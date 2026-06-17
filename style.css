@@ -6,6 +6,13 @@
     padding: 0;
 }
 
+:root {
+    scroll-behavior: smooth;
+    scrollbar-width: thin; 
+    scrollbar-color: #3c040892 rgba(56, 0, 10, 0.6); /* колір бігунка | колір доріжки */
+    
+}
+
 body {
     font-family: "Smooch Sans", sans-serif;
     font-weight: 400;
@@ -13,21 +20,70 @@ body {
     color: #f9f9f9;
     line-height: 1.5;
     letter-spacing: 0.1em;
-    padding: 40px 20px;
-    height: 100vh;
+    padding-bottom: 60px;
+    height: 100%;
 }
+
+/* Navbar */
+header { 
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.138);
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+              0 0 15px rgba(255, 23, 85, 0.1);
+}
+
+#navbar {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    padding: 0 60px;
+}
+
+nav ul li{
+    display: inline-block;
+    margin: 10px 30px;
+    font-size: 2em;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+
+.nav-link:hover {
+    text-shadow: 0 0 5px rgba(255, 23, 85, 0.6),  /* Внутрішнє яскраве свічення */
+                0 0 10px rgba(255, 23, 85, 0.6),  /* Чіткий контур */
+                0 0 20px rgba(255, 23, 85, 0.6),  /* Середнє розмиття */
+                0 0 40px rgba(255, 23, 85, 0.6);  /* Широкий ореол */
+    transform: translateY(-2px);
+    display: inline-block;
+}
+
 
 /* Flexbox Container */
 .profile-container {
     display: flex;
     max-width: 1000px;
     margin: 0 auto;
-    gap: 32px;
+    gap: 35px;
+    padding: 70px 20px 0 20px;
 }
 
 /* Left Column - Sidebar */
 .sidebar {
     flex: 0 0 300px; /* Fixed width, won't grow or shrink */
+    position: sticky;
+    top: 70px;
+    height: 100%;
 }
 
 .avatar {
@@ -38,7 +94,7 @@ body {
 }
 
 .user-meta {
-    margin-top: 16px;
+    margin-top: 10px;
 }
 
 .user-meta h1 {
@@ -104,7 +160,8 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
               0 0 15px rgba(255, 23, 85, 0.1);
     padding: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
+    scroll-margin-top: 70px;
 }
 
 .info-card h3 {
@@ -124,17 +181,20 @@ li {
 }
 
 li strong {
-    color: #f5006e; /* GitHub-style blue */
+    color: #f5006e; 
 }
 
-li a {
+.info-card ul li a {
     color: #fff;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: all 0.4s ease;
 }
 
-li a:hover {
-    transform: scale(1.05) translateX(5px);
+.info-card ul li a:hover {
+    text-shadow: 0 0 5px rgba(255, 23, 85, 0.6),  /* Внутрішнє яскраве свічення */
+                0 0 10px rgba(255, 23, 85, 0.6),  /* Чіткий контур */
+                0 0 20px rgba(255, 23, 85, 0.6),  /* Середнє розмиття */
+                0 0 40px rgba(255, 23, 85, 0.6);  /* Широкий ореол */
     display: inline-block;
 }
 
@@ -142,6 +202,14 @@ li a:hover {
 @media (max-width: 768px) {
     body {
         height: 100%;
+    }
+    #navbar {
+        justify-content: space-around;
+        padding: 0;
+    }
+    nav ul li{
+        margin: 10px 10px;
+        font-size: 1.7em;
     }
     .profile-container {
         flex-direction: column;
@@ -151,6 +219,7 @@ li a:hover {
         flex: 1;
         text-align: center;
         width: 100%;
+        position: static;
     }
     .avatar {
         width: 200px;
